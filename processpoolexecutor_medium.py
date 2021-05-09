@@ -6,7 +6,7 @@ import random
 import sys
 
 
-VERSION = 1
+VERSION = 2
 TASK_ID_IDX = 0
 TASK_DELAY_IDX = 1
 
@@ -43,19 +43,19 @@ def main(path_of_script):
             ): standin_arg_lst for standin_arg_lst in lst_standin_params 
         }
         #
+        '''
         import pprint
         pprint.pprint(future_standin_exe)
         print("")
         print(type(future_standin_exe))
         print("")
+        '''
         #
         for future in concurrent.futures.as_completed(future_standin_exe):
             tmp_rv_holder = future_standin_exe[future]
             #
             try:
                 data = future.result()
-                import pprint
-                pprint.pprint(dir(data))
             except Exception as exc:
                 print('An exception occurred: %s' % (exc))
             else:

@@ -34,7 +34,12 @@ if __name__ == "__main__":
     runid = sys.argv[1]
     slp_dur_secs = int(sys.argv[2])
     #
-    try:
-        main(runid, slp_dur_secs)
-    except Exception as exc:
-        TODO
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, prefix="stand_in_error_log_") as tmp:
+        try:
+            main(runid, slp_dur_secs)
+            tmp.write("Finished main with no errors ")
+        except Exception as exc:
+            tmp.write("Doing except in main ")
+            tmp.write(exc)
+        else:
+            tmp.write("Doing else in main ")

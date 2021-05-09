@@ -55,7 +55,9 @@ def main(path_of_script):
             tmp_rv_holder = future_standin_exe[future]
             #
             try:
+                print("A")
                 data = future.result()
+                print("B")
             except Exception as exc:
                 print('An exception occurred: %s' % (exc))
             else:
